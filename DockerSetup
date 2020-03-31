@@ -10,7 +10,7 @@
   - name: Install git
     yum: name=git state=present
   - name: Get the dockerfile from github
-    git: repo=https://github.com/edureka-devops/projCert.git dest=/tmp/gitrepo
+    git: repo=https://github.com/suresh8412/PHPWebsite.git dest=/tmp/gitrepo
   - name: Build the dockerfile
     command: chdir=/tmp/gitrepo docker build -t PHP:ansible .
   - name: Run the dockerimage
