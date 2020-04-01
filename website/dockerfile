@@ -1,11 +1,6 @@
-From nginx
-ENV HTTPD_PREFIX /usr/local/apache2
-ENV PATH $HTTPD_PREFIX/bin:$PATH
-RUN mkdir -p "$HTTPD_PREFIX" \
-	&& chown www-data:www-data "$HTTPD_PREFIX"
-WORKDIR $HTTPD_PREFIX
-
-COPY index.php /usr/local/bin/
+FROM httpd:2.4
+Maintainer "Suresh"
+COPY website /usr/local/bin/
 
 EXPOSE 80
 CMD ["httpd-foreground"]
