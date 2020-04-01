@@ -1,0 +1,21 @@
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: Install docker
+    yum: name=docker state=present
+  - name: Start docker
+    service: name=docker state=started
+  - name: Install git
+    yum: name=git state=present
+  - name: Install Apache2
+    yum: name=httpd state=present
+  - name: Start httpd
+    service: name=httpd state=started
+  - name: Get the dockerfile from github
+    git: repo='https://github.com/suresh8412/PHPWebsite.git' dest=/tmp/gitrepo
+  - name: Build the dockerfile
+    command: chdir=/tmp/gitrepo docker build -t test:dockerfile .
+  - name: Run the container
+    command: docker run -itd -P test:dockerfile
