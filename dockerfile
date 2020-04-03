@@ -3,4 +3,4 @@ Maintainer "Suresh"
 COPY website /usr/local/bin/
 
 EXPOSE 80
-CMD ["httpd-foreground"]
+CMD apachectl -D FOREGROUND
